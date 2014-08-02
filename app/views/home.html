@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://geersch.github.io/bootstrap-progressbar/js/bootstrap-progressbar.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		#progressp {
+			width: 500px;
+		}
+	</style>
+</head>
+<body>
+
+<div>
+	<a href="#" id="cargar">Cargar</a>
+</div>
+
+<div class="progress" style="height:30px;" id="progressp">
+  <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="100"  aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+       <span id="progrss_status" style="font-size:18px;width:100%;">0% Completado</span>
+  </div>
+ 
+</div>
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+
+		$("#progressbar").progressbar({
+		    warningMarker: 60,
+		    dangerMarker: 80,
+		    maximum: 100,
+		    step: 1
+		});
+
+        $( "#cargar" ).click(function( event ) {
+        	event.preventDefault();
+        	cant = 0;
+        	intentos = setInterval(function(){
+        		cant += 10;
+        		$('.progress-bar').css("width",cant+"%");
+        		$("#progrss_status").text(cant+"% Completado");
+
+        		if (cant >= 100 ) {
+        			clearInterval(intentos);
+        		}
+
+        	},1000);
+        });
+    });
+
+</script>
+</body>
+</html>
